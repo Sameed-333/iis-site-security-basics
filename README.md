@@ -20,7 +20,7 @@ This mini-project demonstrates basic hardening of an IIS website on Windows by:
 ## Repository structure (recommended)
 - `README.md`
 - `assets/` (screenshots: authentication settings, permissions, browser test)
-- `report/` (optional: your PDF/DOCX export)
+- `report/` (PDF report)
 
 ---
 
@@ -97,7 +97,7 @@ This mini-project demonstrates basic hardening of an IIS website on Windows by:
 
 ---
 
-## Verification checklist (what to include in `assets/`)
+## Verification checklist
 Add screenshots and name them clearly, for example:
 - `assets/01-windows-features-windows-auth.png`
 - `assets/02-iis-authentication-settings.png`
