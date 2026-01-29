@@ -1,128 +1,76 @@
 # IIS Site Security Basics (Windows Authentication + Permissions)
 
-This mini-project demonstrates basic hardening of an IIS website on Windows by:
-- Enabling **Windows Authentication**
-- Disabling **Anonymous Authentication**
-- Tightening **NTFS permissions** for the Default Web Site
-- Granting access to specific users/groups and validating access by testing the site
+This mini-project demonstrates basic hardening of an IIS website on Windows by enabling **Windows Authentication**, disabling **Anonymous Authentication**, and tightening **NTFS permissions** for controlled access.
 
-## Objective
-- Enable Windows Authentication in IIS
-- Restrict access by disabling anonymous access
-- Review and reconfigure file/folder permissions for the website
-- Validate the site works after applying security controls
+**Course:** System & Network Administration (SNA Lab)  
+**Tool Used:** Internet Information Services (IIS)  
+**Focus:** Authentication hardening, NTFS permission control, access validation
 
-## Environment
+---
+
+## Tools & Technologies
 - Windows 11 (similar steps apply on Windows 10 / Windows Server)
-- IIS installed (Internet Information Services)
-- Administrator privileges
-
-## Repository structure (recommended)
-- `README.md`
-- `assets/` (screenshots: authentication settings, permissions, browser test)
-- `report/` (PDF report)
+- IIS (Internet Information Services)
+- Windows Features (to enable IIS security components)
+- IIS Manager (Authentication settings)
+- NTFS Permissions (Security tab / Advanced permissions)
 
 ---
 
-## Part A — Enable Windows Authentication
-
-### 1) Install Windows Authentication feature (if missing)
-1. Open **Control Panel** → **Programs** → **Turn Windows features on or off**
-2. Expand:
-   - **Internet Information Services**
-   - **World Wide Web Services**
-   - **Security**
-3. Check **Windows Authentication**
-4. Click **OK** and let Windows install the feature
-
-### 2) Configure Authentication settings in IIS
-1. Open **IIS Manager**
-2. Go to: **Sites** → **Default Web Site**
-3. Open **Authentication**
-4. Apply these settings:
-   - **Disable**: Anonymous Authentication
-   - **Enable**: Windows Authentication
-
-> Result: Users must authenticate (Windows credentials) instead of browsing anonymously.
+## Project Files
+- `report/IIS-Site-Security-Basics.pdf` (detailed lab report)
+- `assets/` (screenshots: configurations, permissions, validation)
 
 ---
 
-## Part B — Harden website folder permissions (NTFS)
-
-### 3) Open Default Web Site folder permissions
-1. In **IIS Manager**, right-click **Default Web Site**
-2. Click **Edit Permissions**
-3. Go to the **Security** tab
-
-### 4) Disable inheritance and convert permissions
-1. Click **Advanced**
-2. Click **Disable inheritance**
-3. Choose: **Convert inherited permissions into explicit permissions on this object**
-4. Click **Apply** → **OK**
-
-> This step gives you direct control over permissions instead of inheriting from parent folders.
-
-### 5) Remove/adjust users and permissions
-1. Back in **Security** tab → click **Edit**
-2. Remove unnecessary groups/users (example: overly-broad access groups)
-3. Ensure only required identities have access (typical examples):
-   - Administrators (full control)
-   - IIS worker identity (as needed)
-   - Specific user/group you want to allow
+## What’s Demonstrated
+- Installing/enabling **Windows Authentication** for IIS
+- Disabling **Anonymous Authentication** for the target site
+- Reconfiguring Default Web Site folder permissions:
+  - Disabling inheritance
+  - Converting inherited permissions into explicit permissions
+  - Managing allowed users/groups
+- Testing the site after applying security controls
 
 ---
 
-## Part C — Allow specific user/group access
-
-### 6) Add user/group and set permissions
-1. In **Security** tab → **Edit** → **Add**
-2. Enter a username or group name
-3. Click **Check Names** → **OK**
-4. Assign appropriate permissions (start minimal, expand only if needed):
-   - Read & execute
-   - List folder contents
-   - Read
-5. Click **Apply** → **OK**
+## Key Learning
+- How IIS authentication modes affect website access
+- How NTFS permissions control who can read/execute website files
+- Why permission inheritance should be reviewed for hosted content
+- How to verify security changes without breaking availability
 
 ---
 
-## Part D — Test the site
-
-### 7) Verify access works
-1. In IIS Manager, select **Default Web Site**
-2. Click **Browse Website**
-3. Confirm:
-   - The website opens successfully
-   - Authentication behavior matches your settings (no anonymous access)
-
----
-
-## Verification checklist
-Add screenshots and name them clearly, for example:
-- `assets/01-windows-features-windows-auth.png`
-- `assets/02-iis-authentication-settings.png`
-- `assets/03-disable-inheritance.png`
-- `assets/04-security-tab-users-groups.png`
-- `assets/05-browser-test.png`
+## Screenshots
+Evidence is available in `assets/`:
+- `01-windows-features-windows-auth.png`
+- `02-iis-authentication-settings.png`
+- `03-disable-inheritance.png`
+- `04-security-tab-users-groups.png`
+- `05-browser-test.png`
 
 ---
 
-## Troubleshooting
-- **Windows Authentication option not visible in IIS**
-  - Ensure the Windows Feature “Windows Authentication” is installed (Part A).
-- **Getting 401 Unauthorized**
-  - Confirm Windows Authentication is enabled and Anonymous is disabled.
-  - Confirm the authenticated user is granted NTFS permissions on the website folder.
-- **Site breaks after permission changes**
-  - Restore required permissions for IIS/app pool identity and re-test.
+## How to Run
+1. Clone the repository:
+```bash
+git clone https://github.com/Sameed-333/iis-site-security-basics.git
+```
 
----
+2. Navigate to the project folder:
+```bash
+cd iis-site-security-basics
+```
 
-## Notes (safe publishing)
-Before making this repo public:
-- Blur/redact usernames, machine names, domains, IP addresses from screenshots.
-- Do not upload credentials or private configs.
+3. Review the lab report and evidence:
+- Open report/IIS-Site-Security-Basics.pdf
+- Review screenshots in assets/
 
-## Author
-Muhammad Sameed Asif  
-GitHub: https://github.com/Sameed-333
+4. Apply and validate (high-level):
+- Enable Windows Authentication and disable Anonymous Authentication for the site
+- Adjust NTFS permissions on the website directory to allow only required users/groups
+- Browse the site to confirm expected authentication behavior and availability
+
+### Disclaimer
+This project is for educational purposes only as part of a university SNA lab. It demonstrates basic IIS authentication and permission hardening in a controlled environment and is not intended as a complete production security baseline.
