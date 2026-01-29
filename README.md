@@ -72,5 +72,7 @@ cd iis-site-security-basics
   - Adjust NTFS permissions on the website directory to allow only required users/groups
   - Browse the site to confirm expected authentication behavior and availability
 
-### Disclaimer
+---
+
+## Disclaimer
 This project is for educational purposes only as part of a university SNA lab. It demonstrates basic IIS authentication and permission hardening in a controlled environment and is not intended as a complete production security baseline.
