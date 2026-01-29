@@ -64,10 +64,12 @@ cd iis-site-security-basics
 ```
 
 3. Review the lab report and evidence:
+  
 - Open `report/IIS-Site-Security-Basics.pdf`
 - Review screenshots in `assets/`
 
 4. Apply and validate (high-level):
+   
 - Enable Windows Authentication and disable Anonymous Authentication for the site
 - Adjust NTFS permissions on the website directory to allow only required users/groups
 - Browse the site to confirm expected authentication behavior and availability
